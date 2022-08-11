@@ -1,4 +1,3 @@
-import {cleanObject, useMount} from "../../utils";
 import {FormEvent} from "react";
 
 const apiUrl = process.env.REACT_APP_API_URL;
@@ -9,11 +8,13 @@ export const LoginScreen = () => {
     fetch(`${apiUrl}/login`, {
       method: 'POST',
       headers: {
-        "Content-Type": 'application/json',
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(cleanObject(param))
+      body: JSON.stringify(param),
     }).then(async response => {
-      console.log(await response.json())
+      if (response.ok) {
+
+      }
     })
   }
 
