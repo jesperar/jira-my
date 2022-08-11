@@ -1,8 +1,40 @@
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  title: string;
+  organization: string;
+}
 
-export const SearchPanel = () => {
+interface SearchPanelProps {
+  users: User[],
+  param: {
+    name: string;
+    personId: string;
+  },
+  setParam: (param: SearchPanelProps['param']) => void
+}
+
+export const SearchPanel = ({users, param, setParam}: SearchPanelProps) => {
   return (
-    <div>
-      SearchPanel
+    <form>
+      <div>
+      <input type="text"
+             value={param.name}
+             onChange={(evt) =>
+               setParam({
+                 ...param,
+                 name: evt.target.value,
+               })
+             }
+      />
+      <select name="" id="">
+        <option>all</option>
+        {users.map(u => {
+          return <option key={u.name}>{u.name}</option>
+        })}
+      </select>
     </div>
+    </form>
   )
 }
