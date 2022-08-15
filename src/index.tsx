@@ -1,17 +1,21 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {createRoot} from 'react-dom/client'
+import {loadDevTools} from "jira-dev-tool";
+import {AuthProvider} from "./context/auth-content";
 
-import { loadDevTools } from "jira-dev-tool";
+const container = document.getElementById('root')
+const root = createRoot(container as Element | DocumentFragment);
 
 loadDevTools(() => {
-  ReactDOM.render(
+  root.render(
     <React.StrictMode>
-      <App />
-    </React.StrictMode>,
-    document.getElementById("root")
+      <AuthProvider>
+        <App/>
+      </AuthProvider>
+    </React.StrictMode>
   );
 });
 
